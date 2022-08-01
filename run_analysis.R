@@ -1,5 +1,13 @@
 library(tidyverse)
 
+#download the data and extract.
+folder_check <- "UCI HAR Dataset"
+data_url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+if(!file.exists(folder_check)) {
+    download.file(data_url, destfile = "activity_data.zip")
+    unzip(zipfile = "activity_data.zip")
+}
+
 #Load Activity labels and Feature names.
 activities <- read.table("./UCI HAR Dataset/activity_labels.txt", col.names = c("ActivityId","ActivityName"))
 features <- read.table("./UCI HAR Dataset/features.txt", col.names = c("FeatureId","FeatureName"))
