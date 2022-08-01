@@ -41,4 +41,7 @@ final <- bind_rows(training_data, test_data)
 final <- final %>% select(1:3, contains("mean()") | contains("std()"))
 
 #mean of all mean and std measurements extracted above by subject and activity
-mean_final <- final %>% group_by(SubjectId, ActivityId, ActivityName) %>% summarise_all(mean)
+final_mean <- final %>% group_by(SubjectId, ActivityId, ActivityName) %>% summarise_all(mean)
+
+#save the above mean data set.
+write.table(final_mean, file = "means_byuserandactivity.txt", row.names = FALSE)
